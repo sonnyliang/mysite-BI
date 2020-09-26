@@ -1,0 +1,20 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+
+
+<!-- 写入 base.html 中定义的 body content -->
+{% block body %}
+
+
+<!-- 左边为filter页面, include -->
+<div class="col-md-3">
+    {% include 'filter.html' %}
+</div>
+    
+<!-- 右边为display页面, 预留block -->
+<div class="col-md-7">
+    {% block display %}{% endblock display %}
+</div>
+
+
+{% endblock body %}

@@ -1,0 +1,48 @@
+{% extends "analysis.html" %}
+
+{% block display %}
+<div class="row-fluid">
+    <!-- 导航区 -->
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">数据指标</a></li>
+        <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+    </ul>
+    
+    <!-- 面板区 -->
+    <div class="tab-content">
+        <br>
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">滚动年金额</div>
+                    <div class="panel-body">
+                        {{ market_size }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">同比增长</div>
+                    <div class="panel-body">
+                        {{ market_gr }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">4年CAGR</div>
+                    <div class="panel-body">
+                        {{ market_cagr }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+</div>
+{% endblock display %}

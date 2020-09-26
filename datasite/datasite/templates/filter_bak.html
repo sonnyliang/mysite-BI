@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="ui form">
+        <form action="" method="post">
+            <!-- 在Django所有的 POST 表单元素时，需要加上下方的csrf_token tag，主要是安全方面的机制 -->
+            {% csrf_token %}
+            <h3 class="ui header" id="analysis">分析维度</h3>
+            <div class="field">
+                <div class="fields">
+                    <div class="sixteen wide field">
+                        <select name="dimension_select" id="dimension_select" class="ui fluid search dropdown">
+                            <option value="PRODUCT" selected>商品名|PRODUCT</option>
+                            {% for key, value in mselect_dict.items %}
+                                <option value="{{ value.select }}">{{ key }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="eight wide field">
+                        <select name="unit_select" id="unit_select" class="ui fluid search dropdown">
+                            <option value="金额" selected>金额</option>
+                            <option value="盒数">盒数</option>
+                            <option value="最小制剂单位数">最小制剂单位数</option>
+                        </select>
+                    </div>
+                    <div class="eight wide field">
+                        <select name="period_select" id="period-select" class="ui fluid search dropdown">
+                            <option value="滚动年" selected>滚动年</option>
+                            <option value="季度">季度</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <h3 class="ui header" id="data_filter">数据筛选</h3>
+            <div class="field">
+                {% for key, value in mselect_dict.items %}
+                <div class="field">
+                    <select name="{{ value.select|add:"_select[]" }}" id="{{ value.select|add:"_select" }}" multiple=""
+                            class="ui fluid search dropdown">
+                        <option value="">{{ key }}</option>
+{#                        {% for item in value.options %}#}
+{#                            <option value="{{ item }}">{{ item }}</option>#}
+{#                        {% endfor %}#}
+                    </select>
+                </div>
+                {% endfor %}
+            </div>
+            <br>
+            <div class="ui buttons">
+                <input class="ui blue button" type='button' id='AJAX_get' value="查询"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 因为用到Semantic UI的Search Dropdown控件，必须有下面语句初始化 -->
+<script>
+    $('.ui.fluid.search.dropdown')
+        .dropdown({ fullTextSearch: true });
+</script>

@@ -1,0 +1,34 @@
+<form>
+    <div class="form-group">
+      <label for="exampleSelect1">分析维度</label>
+      <select class="form-control" id="exampleSelect1">
+        {% for key, value in mselect_dict.items %}
+            <option value="{{ value.select }}">{{ key }}</option>
+        {% endfor %}
+      </select>
+
+      <!-- django标签 verbatim可以使包裹其中的代码不进行渲染保持原样输出 -->
+      {% verbatim %}
+      <label for="exampleSelect1">分析维度</label>
+      <select class="form-control" id="exampleSelect1">
+            <option v-for="item in cateArr">{{ item }}</option>
+      </select>
+      {% endverbatim %}
+    </div>
+
+    <div class="form-group">
+        <label for="exampleSelect1">数据筛选</label>
+        {% for key, value in mselect_dict.items %}
+        <div class="field">
+            <select name="{{ value.select}}" id="{{ value.select}}" multiple="">
+                <option value="">{{ key }}</option>
+                    {% for item in value.options %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+            </select>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
